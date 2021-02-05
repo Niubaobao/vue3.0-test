@@ -1,53 +1,32 @@
 <template>
+  <!-- 
+  组件的模板决定了组件生成的dom标签
+  vue内部 ： 组件经历 创建vnode -> 渲染vnode -> 生成vnode
+  vnode: 一个可以描述组件信息的javascript对象
+ -->
   <h1>{{ msg }}</h1>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank"
-      >Vite Documentation</a
-    >
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-  </p>
-
-  <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
-    +
-    <a
-      href="https://marketplace.visualstudio.com/items?itemName=octref.vetur"
-      target="_blank"
-      >Vetur</a
-    >
-    +
-    <a
-      href="https://marketplace.visualstudio.com/items?itemName=znck.vue-language-features"
-      target="_blank"
-      >Vue DX</a
-    >
-  </p>
-  <p>
-    If using &lt;script setup&gt;: use
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-    instead (and disable Vetur)
-  </p>
-  <p>
-    <b style="color: red"
-      >Make sure to use workspace version of TypeScript!!!</b
-    >
-    <br />This leverages the <code>@vuex/typescript-plugin-vue</code> to provide
-    types for `*.vue` imports. <br />1. Open <code>src/main.ts</code> in VSCode
-    <br />2. Open VSCode command input <br />3. Search and run "Select
-    TypeScript version" -> "Use workspace version"
-  </p>
-  <button @click="count++">count is: {{ count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+  <div>
+    <p>hello world</p>
+    <p>{{ count }}</p>
+  </div>
+  <button @click="increment">
+    count is:{{ state.count }},double is:{{ state.double }}
+  </button>
+  <custom-button></custom-button>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from "vue";
+import CustomButton from "./customButton.vue";
+
+import {
+  ref,
+  defineComponent,
+  reactive,
+  computed,
+  watch,
+  onMounted,
+  onBeforeMount,
+} from "vue";
 
 export default defineComponent({
   name: "HelloWorld",
@@ -57,9 +36,64 @@ export default defineComponent({
       required: true,
     },
   },
+
+  components: {
+    CustomButton,
+  },
+
+  // 在creat之前，beforeCreate之后执行
   setup: () => {
     const count = ref(0);
-    return { count };
+
+    const state = reactive({
+      count: 0,
+      double: computed(() => state.count * 2),
+    });
+
+    //监听响应属性变化
+    watch(
+      () => count.value,
+      (count, precount) => {
+        console.log(count, precount);
+      }
+    );
+
+    //也可以监听多个属性变化
+    watch([count, state], ([count, state], [precount, prestate]) => {
+      console.log([precount, prestate]);
+    });
+
+    //生命周期函数
+    /*
+    生命周期映射关系
+    beforeCreate -> 使用 setup() 
+    created -> 使用 use setup() 
+    beforeMount -> onBeforeMount 
+    mounted -> onMounted 
+    beforeUpdate -> onBeforeUpdate 
+    updated -> onUpdated 
+    beforeDestroy-> onBeforeUnmount 
+    destroyed -> onUnmounted 
+    activated -> onActivated 
+    deactivated -> onDeactivated 
+    errorCaptured -> onErrorCaptured
+    */
+    console.log("setup");
+
+    onBeforeMount(() => {
+      console.log("onBeforeMount");
+    });
+
+    onMounted(() => {
+      console.log("onMounted");
+    });
+
+    function increment() {
+      state.count++;
+      count.value++;
+    }
+
+    return { count, state, increment };
   },
 });
 </script>

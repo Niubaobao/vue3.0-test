@@ -4,15 +4,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import { defineComponent, provide, ref } from "vue";
+import HelloWorld from "./components/HelloWorld.vue";
 
 export default defineComponent({
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-})
+    HelloWorld,
+  },
+
+  setup() {
+    const theme = ref(11);
+
+    /*
+    缺点：
+    祖先组件不知道哪些后代需要他提供数据
+    后代组件也不知道数据来源自哪里
+    重构很难，稍微不注意或者改变层级有可能影响之前的传递数据过程
+    */
+    provide("theme", theme);
+  },
+});
 </script>
 
 <style>
