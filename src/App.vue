@@ -22,7 +22,7 @@ export default defineComponent({
     后代组件也不知道数据来源自哪里
     重构很难，稍微不注意或者改变层级有可能影响之前的传递数据过程
     */
-    provide("theme", theme);
+    provide("theme1", theme);
   },
 });
 </script>
