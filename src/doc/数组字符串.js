@@ -49,3 +49,39 @@ var searchInsert = (nums, target) => {
 
 searchInsert(arr, 7)
 
+/*
+合并区间
+输入：intervals = [[1,3],[2,6],[8,10],[15,18]]
+输出：[[1,6],[8,10],[15,18]]
+解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].
+*/
+var mergeArr = [[1, 3], [2, 6], [8, 10], [15, 18]]
+
+var merge = (arr) => {
+    // 判断空值
+    if (arr.length == 0) return 0
+    // 结果数组
+    var targetArr = []
+    // 排序
+    arr.sort((a, b) => a[0] - b[0])
+    targetArr.push(arr[0])
+
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i][0] > targetArr[targetArr.length - 1][1]) {
+            // 没有交集
+            targetArr.push(arr[i])
+        } else {
+            //更新当前区间的最大值
+            if (arr[i][1] > targetArr[targetArr.length - 1][1]) {
+                targetArr[targetArr.length - 1][1] = arr[i][1]
+            }
+        }
+    }
+
+    return targetArr
+
+}
+
+merge(mergeArr)
+
+
