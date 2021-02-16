@@ -22,3 +22,30 @@ var pivotIndex = nums => {
 };
 
 pivotIndex(nums) //3
+
+//搜索插入位置
+/*
+给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
+你可以假设数组中无重复元素。
+*/
+
+const arr = [1, 3, 5, 6]
+var searchInsert = (nums, target) => {
+    let left = 0;
+    let right = nums.length - 1;
+    let mid = 0;
+    let targetIndex = nums.length;
+    while (left <= right) {
+        mid = ((right - left) >> 1) + left
+        if (nums[mid] >= target) {
+            targetIndex = mid
+            right = mid - 1
+        } else {
+            left = mid + 1
+        }
+    }
+    return targetIndex
+}
+
+searchInsert(arr, 7)
+
