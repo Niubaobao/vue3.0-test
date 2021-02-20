@@ -26,3 +26,5 @@ const vnode = {
 ```
 
 - vnode 优点：抽象化 跨平台
+
+### Reactive API
