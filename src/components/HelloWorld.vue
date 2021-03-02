@@ -6,7 +6,7 @@
  -->
   <h1>{{ msg }}</h1>
   <div>
-    <p>hello world</p>
+    <p ref="box">hello world</p>
     <p>{{ count }}</p>
   </div>
   <button @click="increment">
@@ -43,6 +43,12 @@ export default defineComponent({
 
   // 在creat之前，beforeCreate之后执行
   setup: () => {
+    // 用来获取demo元素
+    let box = ref(null);
+    onMounted(() => {
+      console.log(box.value);
+    });
+
     const count = ref(0);
 
     const state = reactive({
@@ -84,16 +90,16 @@ export default defineComponent({
       console.log("onBeforeMount");
     });
 
-    onMounted(() => {
-      console.log("onMounted");
-    });
+    // onMounted(() => {
+    //   console.log("onMounted");
+    // });
 
     function increment() {
       state.count++;
       count.value++;
     }
 
-    return { count, state, increment };
+    return { count, state, increment, box };
   },
 });
 </script>
