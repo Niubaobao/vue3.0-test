@@ -1,6 +1,12 @@
 <!-- v-for 集中抽离-->
 <template>
   <div>
+    <form>
+      <input type="text" v-model="state2.stu.id" />
+      <input type="text" v-model="state2.stu.name" />
+      <input type="text" v-model="state2.stu.age" />
+      <input type="submit" @click="addStu" />
+    </form>
     <ul>
       <li
         v-for="(item, index) in state.stus"
@@ -15,30 +21,16 @@
 
 <script>
 import { reactive } from "vue";
+import useRemoveStudent from "./removeStudent";
+import useAddStudent from "./addStudents";
 export default {
   name: "listDemo",
   setup() {
     let { state, remStu } = useRemoveStudent();
-    return { state, remStu };
+    let { state2, addStu } = useAddStudent(state);
+    return { state, remStu, state2, addStu };
   },
 };
-
-// 把相同业务进行抽离
-function useRemoveStudent() {
-  let state = reactive({
-    stus: [
-      { id: 1, name: "zs", age: 10 },
-      { id: 2, name: "ls", age: 20 },
-      { id: 3, name: "ww", age: 30 },
-      { id: 4, name: "zl", age: 40 },
-    ],
-  });
-
-  function remStu(index) {
-    state.stus = state.stus.filter((stu, idx) => idx !== index);
-  }
-  return { state, remStu };
-}
 </script>
 
 <style>
