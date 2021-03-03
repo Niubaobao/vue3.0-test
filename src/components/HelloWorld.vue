@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import CustomButton from "./customButton.vue";
+import CustomButton from './customButton.vue'
 
 import {
   ref,
@@ -26,10 +26,10 @@ import {
   watch,
   onMounted,
   onBeforeMount,
-} from "vue";
+} from 'vue'
 
 export default defineComponent({
-  name: "HelloWorld",
+  name: 'HelloWorld',
   props: {
     msg: {
       type: String,
@@ -44,30 +44,30 @@ export default defineComponent({
   // 在creat之前，beforeCreate之后执行
   setup: () => {
     // 用来获取demo元素
-    let box = ref(null);
+    let box = ref(null)
     onMounted(() => {
-      console.log(box.value);
-    });
+      console.log(box.value)
+    })
 
-    const count = ref(0);
+    const count = ref(0)
 
-    const state = reactive({
+    let state = reactive({
       count: 0,
       double: computed(() => state.count * 2),
-    });
+    })
 
     //监听响应属性变化
     watch(
       () => count.value,
       (count, precount) => {
-        console.log(count, precount);
-      }
-    );
+        console.log(count, precount)
+      },
+    )
 
     //也可以监听多个属性变化
     watch([count, state], ([count, state], [precount, prestate]) => {
-      console.log([precount, prestate]);
-    });
+      console.log([precount, prestate])
+    })
 
     //生命周期函数
     /*
@@ -84,24 +84,24 @@ export default defineComponent({
     deactivated -> onDeactivated 
     errorCaptured -> onErrorCaptured
     */
-    console.log("setup");
+    console.log('setup')
 
     onBeforeMount(() => {
-      console.log("onBeforeMount");
-    });
+      console.log('onBeforeMount')
+    })
 
     // onMounted(() => {
     //   console.log("onMounted");
     // });
 
     function increment() {
-      state.count++;
-      count.value++;
+      state.count++
+      count.value++
     }
 
-    return { count, state, increment, box };
+    return { count, state, increment, box }
   },
-});
+})
 </script>
 
 <style scoped>

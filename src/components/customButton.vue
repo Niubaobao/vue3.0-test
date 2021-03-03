@@ -7,14 +7,14 @@
 </template>
 
 <script>
-import { inject } from "vue";
+import { inject } from 'vue'
 export default {
   setup() {
-    const them = inject("theme");
+    const them = inject('theme')
 
-    const nothem = inject("nothem", "这是获取不到的时候给的默认值"); // 第二个参数是获取不到
+    const nothem = inject('nothem', '这是获取不到的时候给的默认值') // 第二个参数是获取不到
 
-    return { them, nothem };
+    return { them, nothem }
   },
-};
+}
 </script>

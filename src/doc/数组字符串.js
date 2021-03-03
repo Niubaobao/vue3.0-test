@@ -1,4 +1,4 @@
-// 数组 
+// 数组
 /*
 数组中的元素在内存中是连续存储的，且每个元素占用相同大小的内存
 */
@@ -7,19 +7,18 @@
 
 const nums = [1, 7, 3, 6, 5, 6]
 
-var pivotIndex = nums => {
+var pivotIndex = (nums) => {
+  const total = nums.reduce((a, b) => a + b, 0)
+  let sum = 0 //左侧的和
 
-    const total = nums.reduce((a, b) => a + b, 0);
-    let sum = 0; //左侧的和
-
-    for (let i = 0; i < nums.length; i++) {
-        if (sum == total - sum - nums[i]) {
-            return i;
-        }
-        sum += nums[i];
+  for (let i = 0; i < nums.length; i++) {
+    if (sum == total - sum - nums[i]) {
+      return i
     }
-    return -1;
-};
+    sum += nums[i]
+  }
+  return -1
+}
 
 pivotIndex(nums) //3
 
@@ -31,20 +30,20 @@ pivotIndex(nums) //3
 
 const arr = [1, 3, 5, 6]
 var searchInsert = (nums, target) => {
-    let left = 0;
-    let right = nums.length - 1;
-    let mid = 0;
-    let targetIndex = nums.length;
-    while (left <= right) {
-        mid = ((right - left) >> 1) + left
-        if (nums[mid] >= target) {
-            targetIndex = mid
-            right = mid - 1
-        } else {
-            left = mid + 1
-        }
+  let left = 0
+  let right = nums.length - 1
+  let mid = 0
+  let targetIndex = nums.length
+  while (left <= right) {
+    mid = ((right - left) >> 1) + left
+    if (nums[mid] >= target) {
+      targetIndex = mid
+      right = mid - 1
+    } else {
+      left = mid + 1
     }
-    return targetIndex
+  }
+  return targetIndex
 }
 
 searchInsert(arr, 7)
@@ -55,33 +54,34 @@ searchInsert(arr, 7)
 输出：[[1,6],[8,10],[15,18]]
 解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].
 */
-var mergeArr = [[1, 3], [2, 6], [8, 10], [15, 18]]
+var mergeArr = [
+  [1, 3],
+  [2, 6],
+  [8, 10],
+  [15, 18],
+]
 
 var merge = (arr) => {
-    // 判断空值
-    if (arr.length == 0) return 0
-    // 结果数组
-    var targetArr = []
-    // 排序
-    arr.sort((a, b) => a[0] - b[0])
-    targetArr.push(arr[0])
+  // 判断空值
+  if (arr.length == 0) return 0
+  // 结果数组
+  var targetArr = []
+  // 排序
+  arr.sort((a, b) => a[0] - b[0])
+  targetArr.push(arr[0])
 
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[i][0] > targetArr[targetArr.length - 1][1]) {
-            // 没有交集
-            targetArr.push(arr[i])
-        } else {
-            //更新当前区间的最大值
-            if (arr[i][1] > targetArr[targetArr.length - 1][1]) {
-                targetArr[targetArr.length - 1][1] = arr[i][1]
-            }
-        }
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i][0] > targetArr[targetArr.length - 1][1]) {
+      // 没有交集
+      targetArr.push(arr[i])
+    } else {
+      //更新当前区间的最大值
+      if (arr[i][1] > targetArr[targetArr.length - 1][1]) {
+        targetArr[targetArr.length - 1][1] = arr[i][1]
+      }
     }
-
-    return targetArr
-
+  }
+  return targetArr
 }
 
 merge(mergeArr)
-
-

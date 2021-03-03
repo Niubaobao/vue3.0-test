@@ -20,18 +20,17 @@
 </template>
 
 <script>
-import { reactive } from "vue";
-import useRemoveStudent from "./removeStudent";
-import useAddStudent from "./addStudents";
+import { reactive } from 'vue'
+import useRemoveStudent from './removeStudent'
+import useAddStudent from './addStudents'
 export default {
-  name: "listDemo",
+  name: 'listDemo',
   setup() {
-    let { state, remStu } = useRemoveStudent();
-    let { state2, addStu } = useAddStudent(state);
-    return { state, remStu, state2, addStu };
+    let { state, remStu } = useRemoveStudent()
+    let { state2, addStu } = useAddStudent(state)
+    return { state, remStu, state2, addStu }
   },
-};
+}
 </script>
 
-<style>
-</style>    
+<style></style>
