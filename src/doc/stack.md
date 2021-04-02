@@ -65,3 +65,35 @@ const isValid = (s) => {
 
 ```
 
+<!-- 
+给定 S 和 T 两个字符串，当它们分别被输入到空白的文本编辑器后，判断二者是否相等，并返回结果。 # 代表退格字符。
+
+注意：如果对空文本输入退格字符，文本继续为空。
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/backspace-string-compare
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ -->
+
+ <!-- 
+    进栈出栈 遇到#出栈  不是#出栈 最后对比两个字符串
+  -->
+
+ ```
+ const strCompare = (s, t) => {
+  const str = (s, a = []) => {
+    const len = s.length;
+    for (let i = 0; i < len; i++) {
+      if (s[i] === '#') {
+        a.pop()
+      } else {
+        a.push(s[i])
+      }
+    }
+    return a.join('')
+  }
+  return str(s) === str(t)
+}
+
+ 
+ ```

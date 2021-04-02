@@ -41,3 +41,35 @@ const isValid = (s) => {
 
 }
 
+// 844. 比较含退格的字符串
+
+/*
+ 输入：S = "ab#c", T = "ad#c"
+输出：true
+解释：S 和 T 都会变成 “ac”。
+
+输入：S = "a#c", T = "b"
+输出：false
+解释：S 会变成 “c”，但 T 仍然是 “b”。
+*/
+
+var S = "ab#c"
+var T = "ad#c"
+
+const strCompare = (s, t) => {
+  const str = (s, a = []) => {
+    const len = s.length;
+    for (let i = 0; i < len; i++) {
+      if (s[i] === '#') {
+        a.pop()
+      } else {
+        a.push(s[i])
+      }
+    }
+    return a.join('')
+  }
+
+
+  return str(s) === str(t)
+}
+
