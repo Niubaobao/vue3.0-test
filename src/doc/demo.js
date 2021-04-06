@@ -1,7 +1,7 @@
 // github1s.~~~~~~~ 后追加1s  test
 
 const isValid = (s) => {
-  const n = s.length;
+  const n = s.length
 
   // s的长度必须是偶数 不然就不用对比了直接返回false
   if (n % 2 === 1) return false
@@ -9,11 +9,10 @@ const isValid = (s) => {
   const pairs = new Map([
     [')', '('],
     ['}', '{'],
-    [']', '[']
+    [']', '['],
   ])
 
   const stack = []
-
 
   for (let i = 0; i < s.length; i++) {
     if (pairs.has(s[i])) {
@@ -40,7 +39,6 @@ const isValid = (s) => {
   // });
 
   return !stack.length
-
 }
 
 // 844. 比较含退格的字符串
@@ -55,12 +53,12 @@ const isValid = (s) => {
 解释：S 会变成 “c”，但 T 仍然是 “b”。
 */
 
-var S = "ab#c"
-var T = "ad#c"
+var S = 'ab#c'
+var T = 'ad#c'
 
 const strCompare = (s, t) => {
   const str = (s, a = []) => {
-    const len = s.length;
+    const len = s.length
     for (let i = 0; i < len; i++) {
       if (s[i] === '#') {
         a.pop()
@@ -71,7 +69,44 @@ const strCompare = (s, t) => {
     return a.join('')
   }
 
-
   return str(s) === str(t)
 }
 
+// 【栈】化栈为队
+
+var MyQueue = function () {
+  this.stackIn = []
+  this.stackOut = []
+}
+
+MyQueue.prototype.push = function (x) {
+  this.stackIn.push(x)
+}
+
+MyQueue.prototype.pop = function () {
+  while (this.stackIn.length > 1) {
+    this.stackOut.push(this.stackIn.pop())
+  }
+  var num = this.stackIn.pop()
+
+  while (this.stackOut.length) {
+    this.stackIn.push(this.stackOut.pop())
+  }
+  return num
+}
+
+MyQueue.prototype.peek = function () {
+  while (this.stackIn.length) {
+    this.stackOut.push(this.stackIn.pop())
+  }
+  var num = this.stackOut[this.stackOut.length - 1]
+
+  while (this.stackOut.length) {
+    this.stackIn.push(this.stackOut.pop())
+  }
+  return num
+}
+
+MyQueue.prototype.empty = function () {
+  return !this.stackIn.length && !this.stackOut.length
+}
