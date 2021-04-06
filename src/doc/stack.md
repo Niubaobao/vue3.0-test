@@ -256,3 +256,59 @@ var makeGood = function (s) {
 
 
 ```
+
+<!--
+请设计一个栈，除了常规栈支持的pop与push函数以外，还支持min函数，该函数返回栈元素中的最小值。执行push、pop和min操作的时间复杂度必须为O(1)。
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/min-stack-lcci
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ -->
+
+```
+/**
+* initialize your data structure here.
+*/
+var MinStack = function() {
+   this.stackIn = []
+};
+
+/**
+* @param {number} x
+* @return {void}
+*/
+MinStack.prototype.push = function(x) {
+   this.stackIn.push(x)
+
+};
+
+/**
+* @return {void}
+*/
+MinStack.prototype.pop = function() {
+    this.stackIn.pop()
+};
+
+/**
+* @return {number}
+*/
+MinStack.prototype.top = function() {
+   return this.stackIn[this.stackIn.length-1]
+};
+
+/**
+* @return {number}
+*/
+MinStack.prototype.getMin = function() {
+   return Math.min(...this.stackIn)
+};
+
+/**
+* Your MinStack object will be instantiated and called as such:
+* var obj = new MinStack()
+* obj.push(x)
+* obj.pop()
+* var param_3 = obj.top()
+* var param_4 = obj.getMin()
+*/
+```
