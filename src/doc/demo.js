@@ -110,3 +110,23 @@ MyQueue.prototype.peek = function () {
 MyQueue.prototype.empty = function () {
   return !this.stackIn.length && !this.stackOut.length
 }
+
+// 1544. 整理字符串
+
+var makeGood = function (s) {
+  let res = []
+
+  for (let i of s) {
+    if (
+      res.length &&
+      res[res.length - 1] != i &&
+      res[res.length - 1].toUpperCase() === i.toUpperCase()
+    ) {
+      res.pop()
+    } else {
+      res.push(i)
+    }
+  }
+
+  return res.join('')
+}
