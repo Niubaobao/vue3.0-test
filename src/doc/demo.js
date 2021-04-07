@@ -130,3 +130,9 @@ var makeGood = function (s) {
 
   return res.join('')
 }
+
+
+
+// hashMap
+
+
