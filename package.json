@@ -1,6 +1,8 @@
 {
-  "name": "vue3.0-demo",
+  "name": "{{name}}",
   "version": "0.0.0",
+  "author": "{{author}}",
+  "description": "{{description}}",
   "scripts": {
     "dev": "vite",
     "build": "vuedx-typecheck . && vite build",
