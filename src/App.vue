@@ -2,6 +2,7 @@
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
   <list-demo></list-demo>
+  <el-button @click="handleClick" disabled="true">这是按钮</el-button>
 </template>
 
 <script lang="ts">
@@ -14,6 +15,12 @@ export default defineComponent({
   components: {
     HelloWorld,
     ListDemo,
+  },
+
+  methods:{
+    handleClick(){
+      console.log('handleClick')
+    }
   },
 
   setup() {
