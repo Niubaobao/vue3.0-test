@@ -2,7 +2,7 @@
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
   <list-demo></list-demo>
-  <el-button @click="handleClick" disabled="true">这是按钮</el-button>
+  <el-button @click="handleClick" disabled="true" type="success" icon="el-icon-edit" loading>这是按钮</el-button>
 </template>
 
 <script lang="ts">
