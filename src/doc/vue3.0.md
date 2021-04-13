@@ -178,3 +178,11 @@ computed 函数接受两种类型的参数，一个是 getter 函数，一个是
 1,延时计算，只有当我们访问计算属性的时候，它才会真正运行 computed getter 函数计算；
 
 2,缓存，它的内部会缓存上次的计算结果 value，而且只有 dirty 为 true 时才会重新计算。如果访问计算属性时 dirty 为 false，那么直接返回这个 value。
+
+# string 替换掉 href
+
+```
+url = `https:${baseURL}/api/urlappraisal?token=${token}&orginUrl=${text.match(reg)}`;
+    return str.replace(/href="(.*?)"/, `href='${url}'`);
+
+```
