@@ -1,19 +1,26 @@
 module.exports = {
-    env: {
-        browser: true,
-        es2021: true,
+    'env': {
+        'browser': true,
+        'es2021': true,
+        "node": true,
+        "commonjs": true,
+        "amd": true
     },
-    extends: ['plugin:vue/essential', 'standard', 'plugin:prettier/recommended'],
-    parserOptions: {
-        ecmaVersion: 2020,
-        parser: '@typescript-eslint/parser',
-        sourceType: 'module',
+    'extends': [
+        'eslint:recommended',
+        'plugin:vue/essential'
+    ],
+    'parserOptions': {
+        'ecmaVersion': 12,
+        'sourceType': 'module'
     },
-    plugins: ['vue', '@typescript-eslint'],
-    rules: {
-        indent: 'off',
-        'vue/no-multiple-template-root': 'off',
-        '@typescript-eslint/indent': ['error', 2],
-    },
-
+    'plugins': [
+        'vue'
+    ],
+    'rules': {
+        // allow paren-less arrow functions 要求箭头函数的参数使用圆括号
+        'arrow-parens': 0,
+        // allow async-await 强制 generator 函数中 * 号周围使用一致的空格
+        'generator-star-spacing': 0,
+    }
 }
