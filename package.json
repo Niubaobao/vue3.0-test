@@ -14,7 +14,7 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "node script/verify-commit.js"
+      "commit-msg": "node scripts/verifyCommit.js"
     }
   },
   "devDependencies": {
