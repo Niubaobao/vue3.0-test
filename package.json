@@ -13,7 +13,9 @@
     "vuex": "^4.0.0"
   },
   "husky": {
-    "commit-msg": "node script/verify-commit.js"
+    "hooks": {
+      "commit-msg": "node script/verify-commit.js"
+    }
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.1.4",
