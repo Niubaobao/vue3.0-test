@@ -1,3 +1,7 @@
+/*
+  手写实现vue
+*/
+
 import { initMixin } from "./init"
 
 function Vue(options) {
