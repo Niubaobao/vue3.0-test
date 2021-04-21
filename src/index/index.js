@@ -1,4 +1,10 @@
-let i = 10
-var v = 10
+import { initMixin } from "./init"
 
-console.log(v)
+function Vue(options) {
+  this._init(options)
+}
+
+// 拓展原型
+initMixin(Vue)
+
+export default Vue
