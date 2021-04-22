@@ -204,3 +204,10 @@ vue.use()
  ```
 
 
+```
+provide  / inject
+computed()// 计算属性接受一个函数  或者一个对象携带get setter
+
+```
+
+

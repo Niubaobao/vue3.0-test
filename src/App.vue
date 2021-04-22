@@ -3,6 +3,8 @@
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
   <list-demo></list-demo>
   <el-button @click="handleClick" disabled="true" type="success" icon="el-icon-edit" loading>这是按钮</el-button>
+  <el-radio :label="2233111"></el-radio>
+
 </template>
 
 <script lang="ts">
