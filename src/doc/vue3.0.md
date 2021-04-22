@@ -1,3 +1,5 @@
+<!-- git config --local user.email 451142214@qq.com
+    git config --get user.email-->
 ## 组件渲染
 
 - 组件是对 dom 树的抽象，组件的模板决定组件生成的 Dom 标签
