@@ -1,9 +1,26 @@
 import { isObject } from "../utils";
+import { arrayMethods } from "./array";
 
 
 class Observer {
   constructor(data) {// 对对象中的所有属性进行劫持 递归循环
-    this.walk(data)
+    data.__ob__ = this
+
+    if (Array.isArray(data)) {
+      // 数组劫持的逻辑
+      data.__proto__ = arrayMethods
+      observerArray(data)
+
+    } else {
+      this.walk(data)
+    }
+
+  }
+
+  observerArray(data) {
+    data.forEach(item => {
+      observer(item)
+    })
   }
 
   walk(data) {
@@ -30,6 +47,11 @@ function defineReactive(data, key, value) {
 export function observer(data) {
   //如果是对象才观测
   if (!isObject(data)) return
+
+  // 已经被观测的数组不用再次被观测s
+  if (data.__ob__) {
+    return
+  }
 
   return new Observer(data)
 }
