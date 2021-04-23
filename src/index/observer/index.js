@@ -4,12 +4,15 @@ import { arrayMethods } from "./array";
 
 class Observer {
   constructor(data) {// 对对象中的所有属性进行劫持 递归循环
-    data.__ob__ = this
+    Object.defineProperty(data, '__ob__', {
+      value: this,
+      enumerable: false
+    })
 
     if (Array.isArray(data)) {
       // 数组劫持的逻辑
       data.__proto__ = arrayMethods
-      observerArray(data)
+      this.observerArray(data)
 
     } else {
       this.walk(data)
