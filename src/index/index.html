@@ -15,15 +15,18 @@
 
   <script>
     // view   vm    model
+    /*
+      对象新增的属性是不会是响应的   需要this.$set()才会是响应式的
+      新增的属性是对象的话也可以变成响应式的
+    */
     let vm = new Vue({
       el: "#app",
       data: {
-        name: "hello",
-        obj: {
-          a: 10
-        }
+        name: "hahah",
       },
     })
+    //vm._data.name   ->   vm.name
+    console.log(vm)
   </script>
 
 </body>
