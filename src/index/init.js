@@ -1,3 +1,4 @@
+import { compileToFunction } from "./compiler/index"
 import { initState } from "./initState"
 
 // 
@@ -10,5 +11,27 @@ export function initMixin(Vue) {
     // 对数据进行初始化   watch data props
 
     initState(vm) //vm.$options data
+    // 
+    if (vm.$options.el) {
+      // 将数据挂载到模板上
+      vm.$mount(vm.$options.el)
+    }
   }
+
+  Vue.prototype.$mount = function (el) {
+    el = document.querySelector(el)
+    const vm = this;
+    const options = vm.$options
+    //将模板转换成渲染函数  =》dom vnode diff 更新
+    if (!options.render) { //render函数的优先级是最高的 
+      let template = options.template
+      if (!template && el) { // 如果 没有render 就看有没有template  如果没有template  就取出el的内容作为模板
+        template = el.outerHTML
+        console.log(template)
+        let render = compileToFunction(template)
+        options.render = render
+      }
+    }
+  }
+
 }

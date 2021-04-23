@@ -41,6 +41,7 @@ function defineReactive(data, key, value) {
       return value
     },
     set(newVal) {
+      // 数据劫持  修改视图
       observer(newVal)
       value = newVal
     }
