@@ -8,8 +8,12 @@ export function compileToFunction(template) {
   //step    html => ast => render => 虚拟dom(增加额外的属性)  => 生成dom
 
   //生成代码
-  console.log(root),
-    console.log('????')
+
   let code = generate(root)
-  console.log(code)
+  let render = new Function(`with(this){return ${code}}`)// code 中可能会使用数据  数据在vm上
+  return render   // width +new Function
 }
+
+// var obj = {arr:'333'}
+// with(obj){console.log(arr)}   //333
+// width 语法

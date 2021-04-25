@@ -1,5 +1,6 @@
 import { compileToFunction } from "./compiler/index"
 import { initState } from "./initState"
+import { mountComponent } from "./lifecycle"
 
 // 
 export function initMixin(Vue) {
@@ -27,11 +28,13 @@ export function initMixin(Vue) {
       let template = options.template
       if (!template && el) { // 如果 没有render 就看有没有template  如果没有template  就取出el的内容作为模板
         template = el.outerHTML // 返回字符串
-        console.log(template)
         let render = compileToFunction(template)
         options.render = render
       }
     }
+    //  options.render
+    // console.log(options.render)   //调用render 渲染成dom 替换掉页面的内容
+    mountComponent(vm, el) //组件的挂载
   }
 
 }

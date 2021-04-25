@@ -129,3 +129,10 @@ export function parserHTML(html) {//<div>1111</div>
 
   return root
 }
+
+// 看一下用户是否传入render    没传的话看是否传入template   也没传的话就使用最外层的el指定的元素
+
+// 将html进行词法解析   （开始标签  结束标签 属性文本）
+// =》ast语法树 用来描述html结构   栈结构
+// codegen  <div>hello</div>   =>  _c('div',{},'hello')    =》让字符串执行
+// 模板引擎  new function   + width 来实现
