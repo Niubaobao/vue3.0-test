@@ -20,9 +20,11 @@ export function initMixin(Vue) {
   }
 
   Vue.prototype.$mount = function (el) {
-    el = document.querySelector(el)
+
     const vm = this;
     const options = vm.$options
+    el = document.querySelector(el)
+    vm.$el = el
     //将模板转换成渲染函数  =》dom vnode diff 更新
     if (!options.render) { //render函数的优先级是最高的 
       let template = options.template

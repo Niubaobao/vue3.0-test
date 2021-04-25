@@ -1,3 +1,4 @@
+import { patch } from './vdom/patch'
 export function mountComponent(vm, el) {
   // 数据变化后  会再次调用
   let updateComponent = () => {
@@ -13,6 +14,8 @@ export function mountComponent(vm, el) {
 
 export function lifecycleMixin(Vue) {
   Vue.prototype._update = function (vnode) {
-    console.log('update')
+    const vm = this
+    // 既有初始化  也有更新
+    patch(vm.$el, vnode)
   }
 }
