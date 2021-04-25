@@ -21,16 +21,55 @@ const attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s
 const startTagClose = /^\s*(\/?)>/
 const defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g //{{xxxx}}
 
+//元素1  文本3
+function createAsElement(tagName, attrs) {
+  return {
+    tag: tagName,
+    type: 1,
+    children: [],
+    parent: null,
+    attrs
+  }
+}
+
+let root = null
+let stash = [] //通过栈结构 构建树
+//将解析后的结果 组装成一个树结构    利用栈数据结构
 function start(tagName, attributes) {
-  console.log(tagName, attributes)
+  let parent = stash[stash.length - 1]
+  let element = createAsElement(tagName, attributes) // 遇到开始标签的时候创建一个元素
+  if (!null) {//  如果没有根就赋值给跟元素
+    root = element
+  }
+
+  element.parent = parent  //当放入栈中的时候 parent是最后一个
+  if (parent) {
+    parent.children.push(element)  //双向记录
+  }
+
+  stash.push(element)
 }
 
 function end(tagName) {
-  console.log(tagName, '555')
+
+  let last = stash.pop()
+  if (last.tag != tagName) {
+    throw new Error('标签有误')
+  }
 }
 
 function chars(text) {
   console.log(text, '3333')
+  //去除空格
+  text = text.replace(/\s/g, '')
+
+  let parent = stash[start.length - 1]
+  if (text) {
+    parent.children.push({
+      type: 3,
+      text
+    })
+  }
 }
 
 function parserHTML(html) {//<div>1111</div>
@@ -97,4 +136,6 @@ function parserHTML(html) {//<div>1111</div>
 export function compileToFunction(template) {
   //解析  第三方库html-parser2
   parserHTML(template)
+
+  console.log(root)
 }
