@@ -1,5 +1,6 @@
 import { isObject } from "../utils";
 import { arrayMethods } from "./array";
+import Dep from "./dep";
 
 
 class Observer {
@@ -36,14 +37,23 @@ class Observer {
 //  vue2会对对象递归循环遍历 将每个属性用defineProperty 重新定义  性能差
 function defineReactive(data, key, value) {
   observer(value)
+  let dep = new Dep() //每个属性都有一个dep
   Object.defineProperty(data, key, {
     get() {
+      if (Dep.target) {
+        dep.depend()
+      }
       return value
     },
     set(newVal) {
       // 数据劫持  修改视图
-      observer(newVal)
-      value = newVal
+
+      if (newVal !== value) {
+        observer(newVal)
+        value = newVal
+        dep.notify()
+      }
+
     }
   })
 }
