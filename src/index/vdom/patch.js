@@ -1,6 +1,7 @@
 import { createElement } from "."
 
 export function patch(oldVnode, vnode) {
+
   if (oldVnode.nodeType == 1) {
     // 真实元素  用vnode生成真实的 替换原来的元素
     const parentEle = oldVnode.parentNode

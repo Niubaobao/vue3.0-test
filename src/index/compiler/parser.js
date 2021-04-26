@@ -38,7 +38,7 @@ let stash = [] //通过栈结构 构建树
 function start(tagName, attributes) {
   let parent = stash[stash.length - 1]
   let element = createAsElement(tagName, attributes) // 遇到开始标签的时候创建一个元素
-  if (!null) {//  如果没有根就赋值给跟元素
+  if (!root) {//  如果没有根就赋值给跟元素
     root = element
   }
 
@@ -62,8 +62,8 @@ function chars(text) {
   //去除空格
   text = text.replace(/\s/g, '')
 
-  let parent = stash[start.length - 1]
-  if (text && parent) {
+  let parent = stash[stash.length - 1]
+  if (text) {
     parent.children.push({
       type: 3,
       text
@@ -126,6 +126,7 @@ export function parserHTML(html) {//<div>1111</div>
       chars(text)
     }
   }
+  console.log(root)
 
   return root
 }

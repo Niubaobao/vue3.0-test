@@ -3,7 +3,6 @@ export function mountComponent(vm, el) {
   // 数据变化后  会再次调用
   let updateComponent = () => {
     //调用render 生成虚拟dom
-
     vm._update(vm._render()) //后续更新可以调用updateComponent
     // 虚拟dom 生成真实dom
   }
@@ -15,6 +14,7 @@ export function mountComponent(vm, el) {
 export function lifecycleMixin(Vue) {
   Vue.prototype._update = function (vnode) {
     const vm = this
+    console.log(vnode, 'update')
     // 既有初始化  也有更新
     patch(vm.$el, vnode)
   }
