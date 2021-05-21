@@ -4,7 +4,7 @@
   <list-demo></list-demo>
   <el-button @click="handleClick" disabled="true" type="success" icon="el-icon-edit" loading>这是按钮</el-button>
   <el-radio :label="2233111"></el-radio>
-
+   <!-- <div>备注：{{this.$store.getters.getStatus}}</div> -->
 </template>
 
 <script lang="ts">
@@ -18,6 +18,7 @@ export default defineComponent({
     HelloWorld,
     ListDemo,
   },
+
 
   methods:{
     handleClick(){

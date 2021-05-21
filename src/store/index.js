@@ -1,8 +1,10 @@
-import Vue from 'vue'
+import { app } from '../main'
+
+
 import Vuex from './vuex'
 
-Vue.use(Vuex)
+app.use(Vuex)
 
-// export default new Vuex.Store({
+export default new Vuex.Store({
 
-// })
+})
