@@ -5,6 +5,9 @@
   <el-button @click="handleClick" disabled="true" type="success" icon="el-icon-edit" loading>这是按钮</el-button>
   <el-radio :label="2233111"></el-radio>
    <!-- <div>备注：{{this.$store.getters.getStatus}}</div> -->
+   <router-link to="/">首页</router-link>
+   <router-link to="/mine">我的</router-link>
+   <router-view></router-view>
 </template>
 
 <script lang="ts">

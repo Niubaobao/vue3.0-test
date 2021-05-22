@@ -17,6 +17,7 @@
     "rollup": "^2.38.4",
     "rollup-plugin-babel": "^4.4.0",
     "vue": "^3.0.5",
+    "vue-router": "^4.0.8",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
