@@ -56,6 +56,11 @@ const isValid = (s) => {
 var S = 'ab#c'
 var T = 'ad#c'
 
+/**
+ * @description:
+ * @param {s}
+ * @return {*}
+ */
 const strCompare = (s, t) => {
   const str = (s, a = []) => {
     const len = s.length
@@ -131,8 +136,4 @@ var makeGood = function (s) {
   return res.join('')
 }
 
-
-
 // hashMap
-
-
