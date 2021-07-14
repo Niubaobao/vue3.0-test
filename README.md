@@ -1,8 +1,8 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-13 16:45:34
- * @LastEditTime: 2021-07-14 14:44:24
- * @LastEditors: your name
+ * @LastEditTime: 2021-07-14 19:43:59
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3.0-test/README.md
 -->
@@ -38,3 +38,9 @@ cp -rf dist/exam_vue/home/css ../../public/exam_vue/home/
 
 rmCss:
 rm -rf ../../public/exam_vue/home/css
+
+
+
+# prettier
+
+<!-- https://prettier.io/docs/en/options.html#trailing-commas -->
