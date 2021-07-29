@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-13 16:45:34
- * @LastEditTime: 2021-07-14 19:43:59
+ * @LastEditTime: 2021-07-29 11:09:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3.0-test/README.md
@@ -44,3 +44,5 @@ rm -rf ../../public/exam_vue/home/css
 # prettier
 
 <!-- https://prettier.io/docs/en/options.html#trailing-commas -->
+
+# sentry
